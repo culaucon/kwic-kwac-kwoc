@@ -1,4 +1,5 @@
 package data;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,19 +12,20 @@ import java.util.ArrayList;
 public class FileOperations {
 
 	private String fileName;
-	
+
 	public FileOperations(String name) {
 		fileName = name;
 	}
-	
-	public ArrayList<String> readFromFile()	{
+
+	public ArrayList<String> readFromFile() {
 		ArrayList<String> fileData = new ArrayList<String>();
-		
+
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(fileName));
 			while (true) {
 				String line = reader.readLine();
-				if (line == null) break;
+				if (line == null)
+					break;
 				fileData.add(line);
 			}
 		} catch (FileNotFoundException e) {
@@ -32,7 +34,7 @@ public class FileOperations {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return fileData;
 	}
 
@@ -40,16 +42,16 @@ public class FileOperations {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 			for (String line : fileData) {
-				writer.write(line);
+				writer.write(line + "\n");
 			}
 			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private void createNewFile() {
 		File file = new File(fileName);
 		try {

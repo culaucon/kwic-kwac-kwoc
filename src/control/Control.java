@@ -46,6 +46,12 @@ public class Control {
 
 	private static void displayWelcome() {
 		System.out.println("Welcome to KWIC-KWAC-KWOC");
+		System.out.println("List of valid commands:");
+		System.out.println("   \"+i\" and \"-i\" for adding and deleting ignored words");
+		System.out.println("   \"+t\" and \"-t\" for adding and deleting movie titles");
+		System.out.println("   \"disp ignore\" or \"disp title\" for displaying the corresponding list");
+		System.out.println("   \"disp\" for displaying the result of KWIC-KWAC-KWOC");
+		System.out.println("   \"exit\" for exiting the program properly and saving the lists for future use");
 	}
 
 	private static void handleInput() {
