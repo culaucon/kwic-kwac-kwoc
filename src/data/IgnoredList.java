@@ -2,13 +2,12 @@ package data;
 
 import java.util.ArrayList;
 
-public class IgnoredList {
+public class IgnoredList implements DataList{
 	private ArrayList<String> ignoredList;
 	private FileOperations fileIgnore;
-	private final String IGNORE_NAME = "ignore.txt";
 
-	public IgnoredList() {
-		fileIgnore = new FileOperations(IGNORE_NAME);
+	public IgnoredList(String filename) {
+		fileIgnore = new FileOperations(filename);
 		ignoredList = fileIgnore.readFromFile();
 	}
 

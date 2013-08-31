@@ -2,13 +2,12 @@ package data;
 
 import java.util.ArrayList;
 
-public class MovieTitles {
+public class MovieTitles implements DataList {
 	private ArrayList<String> movieTitles;
 	private FileOperations fileTitle;
-	private final String TITLE_NAME = "title.txt";
 
-	public MovieTitles() {
-		fileTitle = new FileOperations(TITLE_NAME);
+	public MovieTitles(String titleName) {
+		fileTitle = new FileOperations(titleName);
 		movieTitles = fileTitle.readFromFile();
 	}
 

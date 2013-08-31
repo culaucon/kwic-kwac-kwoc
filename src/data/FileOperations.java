@@ -28,6 +28,7 @@ public class FileOperations {
 					break;
 				fileData.add(line);
 			}
+			reader.close();
 		} catch (FileNotFoundException e) {
 			createNewFile();
 			return new ArrayList<String>();
@@ -46,7 +47,7 @@ public class FileOperations {
 			}
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 

@@ -8,6 +8,9 @@ import data.*;
 
 public class Control {
 
+	private static final String IgnoreFileName = "ignore.txt";
+	private static final String TitleFileName = "title.txt";
+	
 	private static IgnoredList ignoredList;
 	private static MovieTitles movieTitles;
 	private static ArrayList<Shift> shifts;
@@ -37,11 +40,12 @@ public class Control {
 		initialize();
 		displayWelcome();
 		handleInput();
+		cleanUp();
 	}
 
 	private static void initialize() {
-		ignoredList = new IgnoredList();
-		movieTitles = new MovieTitles();
+		ignoredList = new IgnoredList(IgnoreFileName);
+		movieTitles = new MovieTitles(TitleFileName);
 	}
 
 	private static void displayWelcome() {
@@ -68,6 +72,10 @@ public class Control {
 			performAction(line.substring(0, indexFirstSpace), line
 					.substring(indexFirstSpace));
 		}
+		scanner.close();
+	}
+	
+	private static void cleanUp(){
 		ignoredList.saveToFile();
 		movieTitles.saveToFile();
 	}
@@ -132,14 +140,15 @@ public class Control {
 			System.out.println(movieTitles);
 		} else if (args.equals("")) {
 			System.out.println(MSG_DISPLAY_RESULT);
-			processResult();
+			generateResult();
+			sortResult();
 			printResult();
 		} else {
 			System.out.println(MSG_INVALID_DISPLAY);
 		}
 	}
 
-	private static void processResult() {
+	private static void generateResult() {
 		shifts = new ArrayList<Shift>();
 		int numberTitles = movieTitles.getSize();
 		for (int i = 0; i < numberTitles; i++) {
@@ -152,6 +161,9 @@ public class Control {
 					shifts.add(new Shift(j, words));
 			}
 		}
+	}
+	
+	private static void sortResult() {
 		Collections.sort(shifts);
 	}
 
